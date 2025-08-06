@@ -1,0 +1,305 @@
+/* App.css - Estilos personalizados para EduCorp */
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Clases de animación */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Transiciones suaves */
+.transition-all-custom {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos de hover mejorados */
+.hover-lift:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover-scale-lg:hover {
+  transform: scale(1.03);
+}
+
+/* Gradientes personalizados */
+.gradient-green-yellow {
+  background: linear-gradient(90deg, #10B981 0%, #F59E0B 100%);
+}
+
+.gradient-green-yellow-hover:hover {
+  background: linear-gradient(90deg, #059669 0%, #D97706 100%);
+}
+
+/* Sombras personalizadas */
+.shadow-card {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-card-hover:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Botones con efecto de onda */
+.btn-wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-wave::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-wave:active::after {
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(100, 100);
+    opacity: 0;
+  }
+}
+
+/* Efecto de parallax sutil */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Scroll suave personalizado */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos para el indicador de sección activa */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #10B981, #F59E0B);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Estilos para las tarjetas de plataformas */
+.platform-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.platform-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Efecto de brillo en los íconos */
+.icon-glow {
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.icon-glow:hover {
+  filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6));
+}
+
+/* Estilos para el carrusel de plataformas */
+.platform-highlight {
+  transition: all 0.5s ease-out;
+}
+
+/* Estilos para testimonios */
+.testimonial-card {
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación de carga */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos para el menú móvil */
+.mobile-menu {
+  transition: all 0.3s ease-out;
+  transform: translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Efecto de tipo de máquina */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #10B981;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #10B981;
+  }
+}
+
+/* Estilos para el fondo de secciones */
+.section-bg {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Estilos para los stats */
+.stat-number {
+  background: linear-gradient(135deg, #10B981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Estilos para el footer */
+.footer-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Estilos responsivos adicionales */
+@media (max-width: 640px) {
+  .mobile-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .text-balance {
+    text-align: center;
+  }
+}
+
+/* Estilos para la sección de demo */
+.demo-button {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Estilos para las estrellas de rating */
+.star-rating {
+  mask-image: linear-gradient(90deg, #10B981 0%, #F59E0B 100%);
+  -webkit-mask-image: linear-gradient(90deg, #10B981 0%, #F59E0B 100%);
+}
+
+/* Fuentes personalizadas */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/custom-font.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Clase para texto con balance óptimo */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Estilos para el overlay de secciones */
+.section-overlay {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+}
