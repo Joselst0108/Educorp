@@ -1,0 +1,598 @@
+import React, { useState, useEffect } from "react";
+import { 
+  BookOpen, 
+  Brain, 
+  Calculator, 
+  Users, 
+  ChartBar, 
+  ArrowRight, 
+  Shield, 
+  Zap, 
+  Trophy, 
+  Star, 
+  Play, 
+  School, 
+  ClipboardList, 
+  GraduationCap,
+  ChevronDown,
+  Menu,
+  X
+} from "lucide-react";
+
+const App = () => {
+  const [activePlatform, setActivePlatform] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const platforms = [
+    {
+      id: "edubank",
+      name: "EduBank",
+      title: "Aprende Finanzas Jugando",
+      description: "Plataforma interactiva donde los estudiantes aprenden educación financiera a través de juegos y simulaciones realistas.",
+      color: "from-green-500 to-emerald-600",
+      icon: Calculator,
+      features: [
+        "Juegos de simulación financiera",
+        "Retos semanales con recompensas",
+        "Educación financiera práctica",
+        "Competencias entre estudiantes"
+      ],
+      stats: [
+        { label: "Estudiantes", value: "15K+" },
+        { label: "Juegos", value: "25+" },
+        { label: "Niveles", value: "100+" }
+      ]
+    },
+    {
+      id: "eduadmin",
+      name: "EduAdmin",
+      title: "Gestión Administrativa Inteligente",
+      description: "Sistema completo para administrar y llevar las cuentas del colegio con precisión y eficiencia.",
+      color: "from-yellow-400 to-orange-500",
+      icon: ChartBar,
+      features: [
+        "Control de finanzas escolares",
+        "Facturación automatizada",
+        "Reportes financieros detallados",
+        "Gestión de pagos y matrículas"
+      ],
+      stats: [
+        { label: "Colegios", value: "500+" },
+        { label: "Transacciones", value: "1M+" },
+        { label: "Ahorro", value: "40%" }
+      ]
+    },
+    {
+      id: "eduprofe",
+      name: "EduProfe",
+      title: "Control Docente Integral",
+      description: "Plataforma para llevar la asistencia y control de notas de los docentes con herramientas avanzadas de gestión.",
+      color: "from-blue-500 to-indigo-600",
+      icon: ClipboardList,
+      features: [
+        "Registro de asistencia digital",
+        "Control de notas en tiempo real",
+        "Generación automática de reportes",
+        "Comunicación con padres"
+      ],
+      stats: [
+        { label: "Docentes", value: "8K+" },
+        { label: "Clases", value: "50K+" },
+        { label: "Notas", value: "2M+" }
+      ]
+    },
+    {
+      id: "edusession",
+      name: "EduSession",
+      title: "Sesiones de Clase con IA",
+      description: "Herramienta innovadora que ayuda a crear sesiones de clase inteligentes con el poder de la inteligencia artificial.",
+      color: "from-purple-500 to-pink-600",
+      icon: Brain,
+      features: [
+        "Generación automática de sesiones",
+        "Contenido adaptado al nivel",
+        "Recomendaciones personalizadas",
+        "Integración con currículo"
+      ],
+      stats: [
+        { label: "Sesiones", value: "100K+" },
+        { label: "IA Generada", value: "95%" },
+        { label: "Tiempo Ahorrado", value: "70%" }
+      ]
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "María González",
+      role: "Directora de Colegio",
+      school: "Colegio San Ignacio",
+      content: "Desde que implementamos EduCorp, nuestra gestión administrativa se ha vuelto más eficiente y transparente. EduAdmin ha sido una revolución para nuestro colegio.",
+      rating: 5
+    },
+    {
+      name: "Carlos Rodríguez",
+      role: "Profesor de Matemáticas",
+      school: "Liceo Moderno",
+      content: "EduProfe me ha permitido ahorrar horas de trabajo en la corrección de notas y el registro de asistencia. Ahora puedo dedicar más tiempo a mis estudiantes.",
+      rating: 5
+    },
+    {
+      name: "Ana Martínez",
+      role: "Estudiante",
+      school: "Colegio Futuro",
+      content: "EduBank es increíble! Aprendí más sobre finanzas jugando que en clases tradicionales. Los desafíos son divertidos y muy educativos.",
+      rating: 5
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActivePlatform(prev => {
+        const currentIndex = platforms.findIndex(p => p.id === prev);
+        return platforms[(currentIndex + 1) % platforms.length].id;
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-green-100 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-yellow-400 rounded-lg flex items-center justify-center">
+                <School className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-yellow-500 bg-clip-text text-transparent">
+                EduCorp
+              </h1>
+            </div>
+            
+            <nav className="hidden md:flex space-x-8">
+              <button 
+                onClick={() => scrollToSection('platforms')}
+                className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+              >
+                Plataformas
+              </button>
+              <button 
+                onClick={() => scrollToSection('features')}
+                className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+              >
+                Características
+              </button>
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+              >
+                Testimonios
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="bg-gradient-to-r from-green-500 to-yellow-400 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
+              >
+                Contacto
+              </button>
+            </nav>
+
+            <button 
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden bg-white border-t border-green-100">
+              <div className="px-4 py-2 space-y-2">
+                <button 
+                  onClick={() => scrollToSection('platforms')}
+                  className="block w-full text-left py-2 text-gray-700 hover:text-green-600"
+                >
+                  Plataformas
+                </button>
+                <button 
+                  onClick={() => scrollToSection('features')}
+                  className="block w-full text-left py-2 text-gray-700 hover:text-green-600"
+                >
+                  Características
+                </button>
+                <button 
+                  onClick={() => scrollToSection('testimonials')}
+                  className="block w-full text-left py-2 text-gray-700 hover:text-green-600"
+                >
+                  Testimonios
+                </button>
+                <button 
+                  onClick={() => scrollToSection('contact')}
+                  className="block w-full text-left py-2 bg-gradient-to-r from-green-500 to-yellow-400 text-white rounded-lg"
+                >
+                  Contacto
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <div className="inline-flex items-center bg-green-100 px-4 py-2 rounded-full text-green-800 text-sm font-medium mb-6">
+              <Star className="w-4 h-4 mr-2" />
+              Transformando la Educación con Tecnología
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              El Futuro de la Educación
+              <span className="block bg-gradient-to-r from-green-600 via-yellow-500 to-green-600 bg-clip-text text-transparent">
+                está en EduCorp
+              </span>
+            </h1>
+            
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Descubre nuestra suite completa de plataformas educativas que transforman la gestión escolar, 
+              el aprendizaje financiero y la enseñanza con inteligencia artificial.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button 
+                onClick={() => scrollToSection('platforms')}
+                className="bg-gradient-to-r from-green-500 to-yellow-400 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center"
+              >
+                Explorar Plataformas
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </button>
+              <button 
+                onClick={() => scrollToSection('demo')}
+                className="border-2 border-green-500 text-green-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-50 transition-all flex items-center justify-center"
+              >
+                Ver Demo
+                <Play className="w-5 h-5 ml-2" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Platforms Section */}
+      <section id="platforms" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Nuestras Plataformas
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Descubre cómo cada plataforma de EduCorp transforma un aspecto diferente de la educación
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {platforms.map((platform) => (
+              <div 
+                key={platform.id}
+                className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer ${
+                  activePlatform === platform.id ? 'ring-4 ring-green-200' : ''
+                }`}
+                onClick={() => setActivePlatform(platform.id)}
+              >
+                <div className={`bg-gradient-to-r ${platform.color} p-6 text-white`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                        <platform.icon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold">{platform.name}</h3>
+                        <p className="text-white/90">{platform.title}</p>
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <p className="text-white/90 leading-relaxed">{platform.description}</p>
+                </div>
+                
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {platform.stats.map((stat, index) => (
+                      <div key={index} className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                        <div className="text-sm text-gray-600">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {platform.features.map((feature, index) => (
+                      <div key={index} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <button className="w-full mt-6 bg-gradient-to-r from-green-500 to-yellow-400 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                    Conocer más
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Características Destacadas
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Lo que hace que EduCorp sea la elección perfecta para tu institución educativa
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                <Zap className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Tecnología de Vanguardia</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Utilizamos las últimas tecnologías de inteligencia artificial y análisis de datos para ofrecer soluciones educativas innovadoras.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                <Shield className="w-8 h-8 text-yellow-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Seguridad y Privacidad</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Tus datos están protegidos con los más altos estándares de seguridad y cumplimos con todas las normativas de privacidad.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                <Trophy className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Resultados Comprobados</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Miles de instituciones ya han transformado su educación con EduCorp, mejorando significativamente sus resultados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Lo que Dicen Nuestros Usuarios
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Testimonios de directores, profesores y estudiantes que ya transformaron su educación con EduCorp
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-6 leading-relaxed">"{testimonial.content}"</p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold">
+                    {testimonial.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-gray-600 text-sm">{testimonial.role}</p>
+                    <p className="text-green-600 text-sm font-medium">{testimonial.school}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section id="demo" className="py-20 bg-gradient-to-r from-green-600 to-yellow-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            ¿Listo para Transformar tu Institución?
+          </h2>
+          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+            Solicita una demostración gratuita y descubre cómo EduCorp puede revolucionar tu escuela.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-green-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all transform hover:-translate-y-1">
+              Solicitar Demo
+            </button>
+            <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all">
+              Ver Precios
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Contáctanos
+              </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Estamos aquí para ayudarte a transformar tu institución educativa. 
+                Escríbenos y te responderemos en menos de 24 horas.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <BookOpen className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Soporte Técnico</h3>
+                    <p className="text-gray-600">soporte@educorp.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                    <Users className="w-6 h-6 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Ventas</h3>
+                    <p className="text-gray-600">ventas@educorp.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <GraduationCap className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Asesoría Educativa</h3>
+                    <p className="text-gray-600">educacion@educorp.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <form className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="Tu nombre completo"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Asunto</label>
+                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    <option>Consulta general</option>
+                    <option>Solicitud de demostración</option>
+                    <option>Soporte técnico</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                  <textarea 
+                    rows="4" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="Cuéntanos cómo podemos ayudarte..."
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-green-500 to-yellow-400 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
+                >
+                  Enviar Mensaje
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-yellow-400 rounded-lg flex items-center justify-center">
+                  <School className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold">EduCorp</h3>
+              </div>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Transformando la educación con tecnología innovadora. 
+                Nuestra misión es empoderar a instituciones educativas con herramientas inteligentes.
+              </p>
+              <div className="flex space-x-4">
+                <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center hover:bg-green-700 transition-colors cursor-pointer">
+                  <span className="text-sm font-bold">FB</span>
+                </div>
+                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer">
+                  <span className="text-sm font-bold">TW</span>
+                </div>
+                <div className="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors cursor-pointer">
+                  <span className="text-sm font-bold">IG</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-4">Plataformas</h4>
+              <ul className="space-y-2 text-gray-300">
+                <li><a href="#platforms" className="hover:text-white transition-colors">EduBank</a></li>
+                <li><a href="#platforms" className="hover:text-white transition-colors">EduAdmin</a></li>
+                <li><a href="#platforms" className="hover:text-white transition-colors">EduProfe</a></li>
+                <li><a href="#platforms" className="hover:text-white transition-colors">EduSession</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-4">Empresa</h4>
+              <ul className="space-y-2 text-gray-300">
+                <li><a href="#" className="hover:text-white transition-colors">Sobre Nosotros</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Carreras</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 EduCorp. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
