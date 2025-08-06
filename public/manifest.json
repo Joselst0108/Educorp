@@ -1,0 +1,36 @@
+{
+  "short_name": "EduCorp",
+  "name": "EduCorp - Transformando la Educación",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#10B981",
+  "background_color": "#FFFFFF",
+  "description": "Descubre nuestra suite completa de plataformas educativas que transforman la gestión escolar, el aprendizaje financiero y la enseñanza con inteligencia artificial.",
+  "lang": "es",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "related_applications": []
+}
