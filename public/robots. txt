@@ -1,0 +1,38 @@
+# robots.txt para EduCorp
+# Más información sobre robots.txt: http://www.robotstxt.org/
+
+# Acepta todos los bots
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tu-usuario.github.io/educorp-landing-page/sitemap.xml
+
+# Evita el rastreo de directorios específicos
+Disallow: /node_modules/
+Disallow: /build/
+Disallow: /coverage/
+Disallow: /public/robots.txt
+Disallow: /public/manifest.json
+
+# Evita el rastreo de archivos específicos
+Disallow: /*.json$
+Disallow: /*.map$
+
+# Configuración para Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Configuración para Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Configuración para Yandex
+User-agent: Yandex
+Allow: /
+
+# Frecuencia de rastreo sugerida
+Crawl-delay: 10
+
+# Host preferido
+Host: https://tu-usuario.github.io/educorp-landing-page
